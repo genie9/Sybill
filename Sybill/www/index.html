@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/material.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <meta charset="utf-8" />
+    <!--
+        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
+        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
+        default: default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *
+    -->
+    <meta http-equiv="Content-Security-Policy" content="none">
+    <title>Sybill</title>
+
+    <!-- Sybill references -->
+    <link href="css/index.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->Täti Sybillin Horoskooppit</span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+                <!-- Navigation. We hide it in small screens. -->
+                <nav class="mdl-navigation mdl-layout--large-screen-only">
+                    <a class="mdl-navigation__link" href="">Week</a>
+                    <a class="mdl-navigation__link" href="">Month</a>
+                    <a class="mdl-navigation__link" href="">Year</a>
+                    <a class="mdl-navigation__link" href="">Love</a>
+                </nav>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Title</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="">Week</a>
+                <a class="mdl-navigation__link" href="">Month</a>
+                <a class="mdl-navigation__link" href="">Year</a>
+                <a class="mdl-navigation__link" href="">Love</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">          
+            <div class="page-content">
+                <!-- firsttime launch, selecting sign and entering other data -->
+                <div id="signs">
+                    <form action="#">
+                        <div class="mdl-select mdl-js-select ">
+                            <label class="mdl-select__label" for="sign">Choose Your Sign</label><br />
+                            <select class="mdl-select mdl-js-select mdl-select--floating-label" id="sign" name="sign" onchange="selectSign()">
+                                <option value="oinas">Oinas</option>
+                                <option value="harka">Härkä</option>
+                                <option value="kaksoset">Kaksoset</option>
+                                <option value="rapu">Rapu</option>
+                                <option value="leijona">Leijona</option>
+                                <option value="neitsyt">Neitsyt</option>
+                                <option value="vaaka">Vaaka</option>
+                                <option value="skorpioni">Skorpioni</option>
+                                <option value="Jousimies">Jousimies</option>
+                                <option value="kauris">Kauris</option>
+                                <option value="vesimies">Vesimies</option>
+                                <option value="kalat">Kalat</option>
+                            </select>
+                        </div>
+                        <!-- enter/save data -->
+                        <button class="mdl-button mdl-js-button mdl-button--raised" onclick="buildHoroscope()">
+                            Button
+                        </button>
+                    </form>
+                </div>
+
+                <!-- requested horoscope-->
+                <div>
+                    <p id="horoscope"></p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Cordova reference and other scripts -->
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+    <script src="scripts/material.js"></script>
+    <script src="scripts/index.js"></script>
+    <script src='http://code.jquery.com/jquery-1.11.0.min.js'></script>
+    <script type='text/javascript' src='scripts/jquery.jsonp-2.4.0.js'></script>
+
+    <script>
+        var applaunchCount = window.localStorage.getItem('launchCount');
+        var mySign = window.localStorage.getItem('sign'); 
+        var myArr = {};
+
+        //Check if launched before
+        if (applaunchCount == 1 && mySign) {
+            document.getElementById("signs").style.display = "none"
+            buildHoroscope();   
+        }
+        // Launching app for first time
+        else {
+            //Local storage is not set, hence first time launch. set the local storage item
+            window.localStorage.setItem('launchCount', 0);
+        }
+
+        // set global mySign
+        function selectSign() {
+            var e = document.getElementById("sign");
+            alert('sign '+sign)
+            window.localStorage.setItem('sign', e.options[e.selectedIndex].text);
+            alert('mySign '+mySign);
+        }
+
+        // Renders horoscope for particular sign
+        function showHoroscope(arr, sign) {
+            var out = applaunchCount;
+            for (i = 0; i < arr.length; i++) {
+                if (arr[i].fiSign == sign)
+                out += arr[i].fiSign +': '+ arr[i].fortune + '' + '</a><br>';
+            }
+            document.getElementById("horoscope").innerHTML = out;
+        }
+
+        //connecting horoscope page and building array from json
+        function buildHoroscope() {
+            var xmlhttp = new XMLHttpRequest();
+            var urlweek = "http://api.rajatieto.org/v1/horoscopes/week";
+            //check
+            alert(xmlhttp.readyState);
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    alert(xmlhttp.readyState);
+                    myArr = JSON.parse(xmlhttp.responseText);
+                    //check
+                    alert(myArr[0].horoscopeDays);
+
+                    showHoroscope(myArr, mySign);
+                }
+            };
+            alert(xmlhttp.readyState);
+            xmlhttp.open("GET", urlweek, true);
+            xmlhttp.send();
+        }
+    </script>
+</body>
+
+</html>
