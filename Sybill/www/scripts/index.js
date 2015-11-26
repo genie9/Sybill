@@ -22,4 +22,80 @@
     function onResume() {
         // TODO: This application has been reactivated. Restore application state here.
     };
-} )();
+})();
+
+//var applaunchCount = null;
+//var mySign = null;
+
+var applaunchCount = window.localStorage.getItem('launchCount');
+var mySign = window.localStorage.getItem('sign');
+
+//Check if launched before
+if (applaunchCount == null || mySign == null) {     //NOT
+     //Local storage is not set, hence first time launch. set the local storage item
+    //window.localStorage.setItem('launchCount', 1);
+    window.open("first.html", '_self');
+    
+} else {
+    alert("applaunchCount = " + applaunchCount + "ja mySign = " + mySign)
+    var xmlhttp = new XMLHttpRequest();
+    var urlweek = "http://api.rajatieto.org/v1/horoscopes/week";
+    //check
+    alert(xmlhttp.readyState);
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            //check
+            alert(xmlhttp.readyState);
+            myArr = JSON.parse(xmlhttp.responseText);
+            //check
+            alert(myArr[0].horoscopeDays);
+
+            showHoroscope(myArr, mySign);
+        }
+    };
+    //check
+    alert(xmlhttp.readyState);
+    xmlhttp.open("GET", urlweek, true);
+    xmlhttp.send();
+}
+    //* Launching app for first time
+//else {
+//    document.getElementById("signs").style.display = "none";
+//} 
+
+//connecting horoscope page and building array from json
+//function buildHoroscope() {
+
+//    var xmlhttp = new XMLHttpRequest();
+//    var urlweek = "http://api.rajatieto.org/v1/horoscopes/week";
+//    //check
+//    alert(xmlhttp.readyState);
+//    xmlhttp.onreadystatechange = function () {
+//        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+//            //check
+//            alert(xmlhttp.readyState);
+//            myArr = JSON.parse(xmlhttp.responseText);
+//            //check
+//            alert(myArr[0].horoscopeDays);
+
+//            showHoroscope(myArr, mySign);
+//        }
+//    };
+//    //check
+//    alert(xmlhttp.readyState);
+//    xmlhttp.open("GET", urlweek, true);
+//    xmlhttp.send();
+//}
+
+// Renders horoscope for particular sign
+
+var myArr = {};
+
+function showHoroscope(arr, sign) {
+    var out = "";
+    for (i = 0; i < arr.length; i++) {
+        if (arr[i].fiSign == sign)
+            out += "<h2>"+arr[i].fiSign + "</h2>  <p>" + arr[i].fortune + '</p>' + '</a><br>';
+    }
+    document.getElementById("horoscope").innerHTML = out;
+}

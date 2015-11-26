@@ -41,39 +41,12 @@
                 <a class="mdl-navigation__link" href="">Love</a>
             </nav>
         </div>
-        <main class="mdl-layout__content">          
+        <main class="mdl-layout__content">
             <div class="page-content">
-                <!-- firsttime launch, selecting sign and entering other data -->
-                <div id="signs">
-                    <form action="#">
-                        <div class="mdl-select mdl-js-select ">
-                            <label class="mdl-select__label" for="sign">Choose Your Sign</label><br />
-                            <select class="mdl-select mdl-js-select mdl-select--floating-label" id="sign" name="sign" onchange="selectSign()">
-                                <option value="oinas">Oinas</option>
-                                <option value="harka">Härkä</option>
-                                <option value="kaksoset">Kaksoset</option>
-                                <option value="rapu">Rapu</option>
-                                <option value="leijona">Leijona</option>
-                                <option value="neitsyt">Neitsyt</option>
-                                <option value="vaaka">Vaaka</option>
-                                <option value="skorpioni">Skorpioni</option>
-                                <option value="Jousimies">Jousimies</option>
-                                <option value="kauris">Kauris</option>
-                                <option value="vesimies">Vesimies</option>
-                                <option value="kalat">Kalat</option>
-                            </select>
-                        </div>
-                        <!-- enter/save data -->
-                        <button class="mdl-button mdl-js-button mdl-button--raised" onclick="buildHoroscope()">
-                            Button
-                        </button>
-                    </form>
-                </div>
-
                 <!-- requested horoscope-->
-                <div>
-                    <p id="horoscope"></p>
-                </div>
+                <div id="horoscope">
+                    <!-- <p id="horoscope"></p>-->
+                </div id="horoscope">
             </div>
         </main>
     </div>
@@ -87,59 +60,7 @@
     <script type='text/javascript' src='scripts/jquery.jsonp-2.4.0.js'></script>
 
     <script>
-        var applaunchCount = window.localStorage.getItem('launchCount');
-        var mySign = window.localStorage.getItem('sign'); 
-        var myArr = {};
 
-        //Check if launched before
-        if (applaunchCount == 1 && mySign) {
-            document.getElementById("signs").style.display = "none"
-            buildHoroscope();   
-        }
-        // Launching app for first time
-        else {
-            //Local storage is not set, hence first time launch. set the local storage item
-            window.localStorage.setItem('launchCount', 0);
-        }
-
-        // set global mySign
-        function selectSign() {
-            var e = document.getElementById("sign");
-            alert('sign '+sign)
-            window.localStorage.setItem('sign', e.options[e.selectedIndex].text);
-            alert('mySign '+mySign);
-        }
-
-        // Renders horoscope for particular sign
-        function showHoroscope(arr, sign) {
-            var out = applaunchCount;
-            for (i = 0; i < arr.length; i++) {
-                if (arr[i].fiSign == sign)
-                out += arr[i].fiSign +': '+ arr[i].fortune + '' + '</a><br>';
-            }
-            document.getElementById("horoscope").innerHTML = out;
-        }
-
-        //connecting horoscope page and building array from json
-        function buildHoroscope() {
-            var xmlhttp = new XMLHttpRequest();
-            var urlweek = "http://api.rajatieto.org/v1/horoscopes/week";
-            //check
-            alert(xmlhttp.readyState);
-            xmlhttp.onreadystatechange = function() {
-                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    alert(xmlhttp.readyState);
-                    myArr = JSON.parse(xmlhttp.responseText);
-                    //check
-                    alert(myArr[0].horoscopeDays);
-
-                    showHoroscope(myArr, mySign);
-                }
-            };
-            alert(xmlhttp.readyState);
-            xmlhttp.open("GET", urlweek, true);
-            xmlhttp.send();
-        }
     </script>
 </body>
 

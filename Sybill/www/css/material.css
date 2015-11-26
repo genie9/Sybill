@@ -1,4 +1,4 @@
-/**
+﻿/**
  * material-design-lite - Material Design Components in CSS, JS and HTML
  * @version v1.0.6
  * @license Apache-2.0
@@ -5805,6 +5805,7 @@ input.mdl-button[type="submit"] {
         -ms-transform-origin: 100% 100%;
             transform-origin: 100% 100%; }
 
+  /*geniemenulist*/
 .mdl-menu {
   position: absolute;
   list-style: none;
@@ -7046,6 +7047,7 @@ input.mdl-button[type="submit"] {
 /* Typography */
 /* Shadows */
 /* Animations */
+/*genieradio*/
 .mdl-radio {
   position: relative;
   font-size: 16px;
