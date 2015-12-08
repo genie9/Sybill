@@ -87,22 +87,25 @@
     <script type='text/javascript' src='scripts/jquery.jsonp-2.4.0.js'></script>
 
     <script>
+        console.log(window.localStorage.getItem('launchCount'))
 
         window.localStorage.setItem('launchCount', 1);
+
+        console.log(window.localStorage.getItem('launchCount'))
 
         var applaunchCount = window.localStorage.getItem('launchCount');
         alert("applaunchCount = " + applaunchCount)
 
+        var mySign = window.localStorage.getItem('sign');
+        alert("ja mySign = " + mySign);
+
         // set global mySign
         function selectSign() {
             var e = document.getElementById("sign");
-            alert('sign '+sign)
+            alert('sign ' + document.getElementById("sign").value)
             window.localStorage.setItem('sign', e.options[e.selectedIndex].text);
-            alert('mySign '+mySign);
+            alert('mySign '+ mySign);
         }
-
-        var mySign = window.localStorage.getItem('sign');
-        alert("ja mySign = " + mySign);
 
         //connecting to horoscope page
         function gotoHoroscope() {

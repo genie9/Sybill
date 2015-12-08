@@ -1,0 +1,58 @@
+css
+
+<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+              <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" checked />
+              <span class="mdl-radio__label">Option 1</span>
+            </label>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+              <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="2" />
+              <span class="mdl-radio__label">Option 2</span>
+            </label>
+
+			
+			
+			                        <div class="mdl-grid"> 
+                            <section class="row">
+                                <div class="mdl-cell mdl-cell--3-col-phone.mdl-cell--3-col-phone mdl-cell--3-col-tablet">
+                                    kuva
+                                </div>
+                                <div class="mdl-cell mdl-cell--6-col-phone.mdl-cell--6-col-phone mdl-cell--6-col-tablet">
+                                    OINAS
+                                </div>
+                                <div class="mdl-cell mdl-cell--3-col-phone.mdl-cell--3-col-phone mdl-cell--3-col-tablet">
+                                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="oinas">
+                                        <input type="radio" id="oinas" class="mdl-radio__button" name="signs" value="oinas" checked />
+                                        <span class="mdl-radio__label"></span>
+                                    </label>
+                                </div>
+                            </section>
+                            <section class="row">
+                                <div class="mdl-cell mdl-cell--3-col-phone.mdl-cell--3-col-phone mdl-cell--3-col-tablet">
+                                    kuva
+                                </div>
+                                <div class="mdl-cell mdl-cell--6-col-phone.mdl-cell--6-col-phone mdl-cell--6-col-tablet">
+                                    KAURIS
+                                </div>
+                                <div class="mdl-cell mdl-cell--3-col-phone.mdl-cell--3-col-phone mdl-cell--3-col-tablet">
+                                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="kauris">
+                                        <input type="radio" id="kauris" class="mdl-radio__button" name="signs" value="kauris"§ checked />
+                                        <span class="mdl-radio__label"></span>
+                                    </label>
+                                </div>
+                            </section>                                
+                        </div>
+
+                            <img class="mdl-cell--1-col-phone.mdl-cell--3-col-phone">OI
+                            <div class="mdl-cell--1-col-phone.mdl-cell--6-col-phone">
+
+                            </div>
+                            <div class=".mdl-cell--1-col-phone.mdl-cell--3-col-phone">
+                                <input type="radio" name="signs" value="oinas" />
+                            </div>
+
+                            <div class=".mdl-cell--1-col-phone.mdl-cell--8-col-phone">
+                            </div>
+                            <div class=".mdl-cell--1-col-phone.mdl-cell--4-col-phone">
+                            </div>
+							
+							C:\Users\Genie\AppData\Local\Microsoft\VisualStudio\14.0\Extensions
