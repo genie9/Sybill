@@ -23,52 +23,81 @@
         // TODO: This application has been reactivated. Restore application state here.
     };
 })();
-window.localStorage.removeItem('launchCount')
-window.localStorage.removeItem('sign')
-
+//window.localStorage.removeItem('UserSign');
 var applaunchCount = window.localStorage.getItem('launchCount');
-mySign = window.localStorage.getItem('sign');
-var myArr = {};                  
+var mySign = JSON.parse(window.localStorage.getItem('UserSign'));
+var horoscopeArr = ""
+
 console.log("1. applaunchCount = " + applaunchCount + " ja mySign = " + mySign)
+
 //Check if launched before
-if (applaunchCount == undefined || mySign == undefined) {     //NOT
+if (!applaunchCount  || !mySign  ) {     //NOT
      //Local storage is not set, hence first time launch. set the local storage item
     //window.localStorage.setItem('launchCount', 1);
-    console.log(window.localStorage.key[0])
+    window.localStorage.setItem('launchCount', 1);
+    window.localStorage.setItem('UserSign', JSON.stringify({ set: 0, name: '' }));
     console.log("NEW. applaunchCount = " + applaunchCount + " ja mySign = " + mySign)
-    window.open("first.html");
-    
+    document.getElementById("newButton").style.display = "none";
+                                                                      
 } else {
      // check
     console.log("applaunchCount = " + applaunchCount + " ja mySign = " + mySign)
+    //document.getElementById("signs").style.display = "none";
+    //document.getElementById("horoscope").style.display = "block";
     //function buildHoroscope() 
     //connecting horoscope page and building array from json
-    var xmlhttp = new XMLHttpRequest();
+    var xmlhttp = new XMLHttpRequest();               
     var urlweek = "http://api.rajatieto.org/v1/horoscopes/week";
     //check
-    alert(xmlhttp.readyState);
+    alert('1. ' + xmlhttp.readyState);
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             //check
-            alert(xmlhttp.readyState);
-            myArr = JSON.parse(xmlhttp.responseText);
+            alert('2. ' + xmlhttp.readyState);
+            horoscopeArr = JSON.parse(xmlhttp.responseText);
+            window.localStorage.setItem('Horoscope', JSON.stringify(horoscopeArr));
             //check
-            showHoroscope(myArr, mySign);
+            //console.log(window.localStorage.getItem('Horoscope'))
+            console.log(' mySign.name ' + mySign.name)
+            showHoroscope(horoscopeArr, mySign.name);
         }
     };
     //check
-    alert(xmlhttp.readyState);
+    alert('3. ' + xmlhttp.readyState);
     xmlhttp.open("GET", urlweek, true);
     xmlhttp.send();
 }
 
 function showHoroscope(arr, sign) {
+    console.log(arr)
     var out = "";
     for (i = 0; i < arr.length; i++) {
-        if (arr[i].fiSign == sign)
-            out += "<h2>"+arr[i].fiSign + "</h2> <h4>" + arr[i].horoscopeDays + "</h4> <p>" + arr[i].fortune + '</p>' + '</a><br>';
+        if (arr[i].fiSign == sign) {
+            console.log('arrSign' + arr[i].fiSign)
+            out += "<h2>" + arr[i].fiSign + "</h2> <h4>" + arr[i].horoscopeDays + "</h4> <p>" + arr[i].fortune + '</p>' + '</a><br>';
+        }
     }
     document.getElementById("horoscope").innerHTML = out;
+    //document.getElementById("signs").style.display = "none";
+    //document.getElementById("horoscope").style.display = "block";
+}
+
+var curSign = '';
+
+// set global UserSign
+function selectSign() {
+    var uSign = JSON.parse(window.localStorage.getItem('UserSign'))
+
+    curSign = document.getElementById("sign");
+    console.log('sign ' + document.getElementById("sign").value)
+    if (uSign.set == 0) {
+        uSign.set = 1
+        uSign.name = curSign.options[curSign.selectedIndex].text
+        console.log(JSON.stringify(uSign))
+        window.localStorage.setItem('UserSign', JSON.stringify(uSign));
+        console.log('UserSign' + window.localStorage.getItem('UserSign'))
+    }
+    console.log('uSign ' + uSign);
 }
 
 //* Launching app for first time

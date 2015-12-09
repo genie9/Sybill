@@ -20,7 +20,7 @@
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
-                <!-- Title -->Täti Sybillin Horoskooppit</span>
+                <!-- Title --><span>Täti Sybillin Horoskooppit</span>
                 <!-- Add spacer, to align navigation to the right -->
                 <div class="mdl-layout-spacer"></div>
                 <!-- Navigation. We hide it in small screens. -->
@@ -44,9 +44,42 @@
         <main class="mdl-layout__content">
             <div class="page-content">
                 <!-- requested horoscope-->
-                <div id="horoscope">
-                    <!-- <p id="horoscope"></p>-->
-                </div id="horoscope">
+                    <div id="horoscope">
+                        <!-- <p id="horoscope"></p>-->
+                        <!-- goto sign select -->
+                        
+                    </div>
+                <form>
+                    <button id="newButton" class="mdl-button mdl-js-button mdl-button--raised" onclick="open()">
+    New horoscope
+</button>
+                </form>
+                
+                <div id="signs">
+                    <form action="#">
+                        <div class="mdl-select mdl-js-select ">
+                            <label class="mdl-select__label" for="sign">Choose Your Sign</label><br />
+                            <select class="mdl-select mdl-js-select mdl-select--floating-label" id="sign" name="sign" onchange="selectSign()">
+                                <option value="oinas">Oinas</option>
+                                <option value="harka">Härkä</option>
+                                <option value="kaksoset">Kaksoset</option>
+                                <option value="rapu">Rapu</option>
+                                <option value="leijona">Leijona</option>
+                                <option value="neitsyt">Neitsyt</option>
+                                <option value="vaaka">Vaaka</option>
+                                <option value="skorpioni">Skorpioni</option>
+                                <option value="Jousimies">Jousimies</option>
+                                <option value="kauris">Kauris</option>
+                                <option value="vesimies">Vesimies</option>
+                                <option value="kalat">Kalat</option>
+                            </select>
+                        </div>
+                        <!-- enter/save data -->
+                        <button class="mdl-button mdl-js-button mdl-button--raised" onclick="showHoroscope(horoscopeArr, curSign)">
+                            Button
+                        </button>
+                    </form>
+                </div>
             </div>
         </main>
     </div>
@@ -60,7 +93,45 @@
     <script type='text/javascript' src='scripts/jquery.jsonp-2.4.0.js'></script>
 
     <script>
+        var horoscopeArr = JSON.parse(window.localStorage.getItem('Horoscope'));
 
+        function open() {
+            console.log('WTF')
+            document.getElementById("signs").style.display = "block";
+            document.getElementById("horoscope").style.display = "block";
+        }
+
+        var curSign = '';
+
+        // set global UserSign
+        function selectSign() {
+            var uSign = JSON.parse(window.localStorage.getItem('UserSign'))
+
+            curSign = document.getElementById("sign");
+            curSign = curSign.options[curSign.selectedIndex].text
+            console.log('sign ' + document.getElementById("sign").value)
+            if (uSign.set == 0) {
+                uSign.set = 1
+                uSign.name = curSign
+                console.log(JSON.stringify(uSign))
+                window.localStorage.setItem('UserSign', JSON.stringify(uSign));
+                console.log('UserSign' + window.localStorage.getItem('UserSign'))
+            }
+            console.log('uSign ' + uSign);
+        }
+        function showHoroscope(arr, sign) {
+            var out = "";
+            for (i = 0; i < arr.length; i++) {
+                if (arr[i].fiSign == sign) {
+                    console.log(arr[i].fiSign + '=' + arr[i].fiSign)
+                    out += "<h2>" + arr[i].fiSign + "</h2> <h4>" + arr[i].horoscopeDays + "</h4> <p>" + arr[i].fortune + '</p>' + '</a><br>';
+                    console.log('out =' + arr[i].fiSign)
+                }
+            }
+            document.getElementById("horoscope").innerHTML = out;
+            document.getElementById("signs").style.display = "none";
+           // document.getElementById("horoscope").style.display = "block";
+        }
     </script>
 </body>
 

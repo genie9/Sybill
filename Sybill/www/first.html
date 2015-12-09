@@ -20,7 +20,7 @@
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
-                <!-- Title -->Täti Sybillin Horoskooppit</span>
+                <!-- Title --><span>Täti Sybillin Horoskooppit</span>
                 <!-- Add spacer, to align navigation to the right -->
                 <div class="mdl-layout-spacer"></div>
                 <!-- Navigation. We hide it in small screens. -->
@@ -64,7 +64,7 @@
                                 </select>
                             </div>
                             <!-- enter/save data -->
-                            <button class="mdl-button mdl-js-button mdl-button--raised" onclick="gotoHoroscope()">
+                            <button class="mdl-button mdl-js-button mdl-button--raised" onclick="showHoroscope(horoscopeArr, curSign)">
                                 Button
                             </button>
                     </form>
@@ -82,33 +82,34 @@
     <script src="cordova.js"></script>
     <script src="scripts/platformOverrides.js"></script>
     <script src="scripts/material.js"></script>
-    <!--<script src="scripts/index.js"></script>-->
+    <script src="scripts/index.js"></script>
     <script src='http://code.jquery.com/jquery-1.11.0.min.js'></script>
     <script type='text/javascript' src='scripts/jquery.jsonp-2.4.0.js'></script>
 
     <script>
-        console.log(window.localStorage.getItem('launchCount'))
-
-        window.localStorage.setItem('launchCount', 1);
-
-        console.log(window.localStorage.getItem('launchCount'))
+        window.localStorage.setItem('UserSign', JSON.stringify({ set: 0, name: '' }));
+        var uSign = JSON.parse(window.localStorage.getItem('UserSign'))
+        var curSign = '';
 
         var applaunchCount = window.localStorage.getItem('launchCount');
         alert("applaunchCount = " + applaunchCount)
+        alert("ja curSign = " + curSign);
 
-        var mySign = window.localStorage.getItem('sign');
-        alert("ja mySign = " + mySign);
-
-        // set global mySign
-        function selectSign() {
-            var e = document.getElementById("sign");
+        // set global UserSign
+        function selectSign() { 
+            curSign = document.getElementById("sign");
             alert('sign ' + document.getElementById("sign").value)
-            window.localStorage.setItem('sign', e.options[e.selectedIndex].text);
-            alert('mySign '+ mySign);
+            if (uSign.set == 0) {
+                uSign.set = 1
+                uSign.name =  curSign.options[curSign.selectedIndex].text
+                window.localStorage.setItem('UserSign', JSON.stringify(uSign) );
+            } 
+            alert('curSign '+ curSign);
         }
 
+        var horoscopeArr = JSON.parse(window.localStorage.getItem('Horoscope'))
         //connecting to horoscope page
-        function gotoHoroscope() {
+        function gotoHoroscope(horoscopeArr, curSign) {
             alert("goto???");
             window.open("index.html", '_self');
         }
