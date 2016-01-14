@@ -1,138 +1,464 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="fi">
 <head>
-    <link rel="stylesheet" href="css/material.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <meta charset="utf-8" />
-    <!--
-        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
-        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
-        default: default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *
-    -->
-    <meta http-equiv="Content-Security-Policy" content="none">
-    <title>Sybill</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Horoskoopit</title>
 
-    <!-- Sybill references -->
-    <link href="css/index.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Philosopher:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Fira+Sans:500' rel='stylesheet' type='text/css'>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/rajatieto.css" rel="stylesheet">
+    <link href="css/rth.css" rel="stylesheet">
+    <!--[if IE 7]><link rel="stylesheet" href="css/rth-ie7.css"><![endif]-->
+
 </head>
 <body>
-    <!-- Always shows a header, even in smaller screens. -->
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header class="mdl-layout__header">
-            <div class="mdl-layout__header-row">
-                <!-- Title --><span>Täti Sybillin Horoskooppit</span>
-                <!-- Add spacer, to align navigation to the right -->
-                <div class="mdl-layout-spacer"></div>
-                <!-- Navigation. We hide it in small screens. -->
-                <nav class="mdl-navigation mdl-layout--large-screen-only">
-                    <a class="mdl-navigation__link" href="">Week</a>
-                    <a class="mdl-navigation__link" href="">Month</a>
-                    <a class="mdl-navigation__link" href="">Year</a>
-                    <a class="mdl-navigation__link" href="">Love</a>
-                </nav>
-            </div>
-        </header>
-        <div class="mdl-layout__drawer">
-            <span class="mdl-layout-title">Title</span>
-            <nav class="mdl-navigation">
-                <a class="mdl-navigation__link" href="">Week</a>
-                <a class="mdl-navigation__link" href="">Month</a>
-                <a class="mdl-navigation__link" href="">Year</a>
-                <a class="mdl-navigation__link" href="">Love</a>
-            </nav>
-        </div>
-        <main class="mdl-layout__content">
-            <div class="page-content">
-                <!-- requested horoscope-->
-                    <div id="horoscope">
-                        <!-- <p id="horoscope"></p>-->
-                        <!-- goto sign select -->
-                        
-                    </div>
-                <form>
-                    <button id="newButton" class="mdl-button mdl-js-button mdl-button--raised" onclick="open()">
-    New horoscope
-</button>
-                </form>
-                
-                <div id="signs">
-                    <form action="#">
-                        <div class="mdl-select mdl-js-select ">
-                            <label class="mdl-select__label" for="sign">Choose Your Sign</label><br />
-                            <select class="mdl-select mdl-js-select mdl-select--floating-label" id="sign" name="sign" onchange="selectSign()">
-                                <option value="oinas">Oinas</option>
-                                <option value="harka">Härkä</option>
-                                <option value="kaksoset">Kaksoset</option>
-                                <option value="rapu">Rapu</option>
-                                <option value="leijona">Leijona</option>
-                                <option value="neitsyt">Neitsyt</option>
-                                <option value="vaaka">Vaaka</option>
-                                <option value="skorpioni">Skorpioni</option>
-                                <option value="Jousimies">Jousimies</option>
-                                <option value="kauris">Kauris</option>
-                                <option value="vesimies">Vesimies</option>
-                                <option value="kalat">Kalat</option>
-                            </select>
-                        </div>
-                        <!-- enter/save data -->
-                        <button class="mdl-button mdl-js-button mdl-button--raised" onclick="showHoroscope(horoscopeArr, curSign)">
-                            Button
-                        </button>
-                    </form>
+    <section class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+
+                <div class="page-header">
+                    <a href="http://www.rajatieto.org" title="Rajatieto.org"><img src="images/rajatieto-logo.png" class="img-responsive img-rounded pull-right img-logo" alt="palvelun tarjoaa Rajatieto.org"></a>
+                    <h1><img src="images/oinas-01.png" id="image" class="img-responsive img-rounded pull-left img-horoscope-head" data-toggle="collapse" data-target="#collapseAllHoroscopes" aria-expanded="false" aria-controls="collapseAllHoroscopes" alt="Oinas"><span id="signName">Oinas </span><small id="small">21.3. - 19.4.</small></h1>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </section>
 
-    <!-- Cordova reference and other scripts -->
-    <script src="cordova.js"></script>
-    <script src="scripts/platformOverrides.js"></script>
-    <script src="scripts/material.js"></script>
-    <script src="scripts/index.js"></script>
-    <script src='http://code.jquery.com/jquery-1.11.0.min.js'></script>
-    <script type='text/javascript' src='scripts/jquery.jsonp-2.4.0.js'></script>
 
+    <section class="container">
+        <div class="row">
+            <div class="col-xs-12">
+
+                <!--<p class="text-center">
+                <button class="btn btn-default btn-sm btn-all-horoscopes" type="button" data-toggle="collapse" data-target="#collapseAllHoroscopes" aria-expanded="false" aria-controls="collapseAllHoroscopes"><i class="icon-th"></i> Kaikki horoskooppimerkit</button>
+                </p>-->
+
+                <div class="collapse" id="collapseAllHoroscopes">
+                    <aside>
+                        <h2>Valitse horoskooppi</h2>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-4 col-md-3">
+                                <!--<a href="horoskooppi.html" class="horoscope">-->
+                                <button class="horoscope" onclick="showHoroscope('Oinas')">
+                                    <div class="panel panel-default panel-horoscope">
+                                        <div class="panel-heading"><h2 class="panel-title">Oinas <span class="text-muted visible-xs-block visible-sm-inline visible-md-inline visible-lg-inline">21.3. - 19.4.</span></h2></div>
+                                        <div class="panel-body">
+                                            <img src="images/oinas-01.png" class="img-responsive" alt="Oinas">
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-4 col-md-3">
+                                <button class="horoscope" onclick="showHoroscope('Harka')">
+                                    <div class="panel panel-default panel-horoscope">
+                                        <div class="panel-heading"><h2 class="panel-title">Härkä <span class="text-muted visible-xs-block visible-sm-inline visible-md-inline visible-lg-inline">20.4. - 20.5.</span></h2></div>
+                                        <div class="panel-body">
+                                            <img src="images/harka-01.png" class="img-responsive" alt="Härkä">
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div class="clearfix visible-xs"></div>
+
+                            <div class="col-xs-6 col-sm-4 col-md-3">
+                                <button class="horoscope" onclick="showHoroscope('Kaksoset')">
+                                    <div class="panel panel-default panel-horoscope">
+                                        <div class="panel-heading"><h2 class="panel-title">Kaksoset <span class="text-muted visible-xs-block visible-sm-inline visible-md-inline visible-lg-inline">21.5. - 20.6.</span></h2></div>
+                                        <div class="panel-body">
+                                            <img src="images/kaksoset-01.png" class="img-responsive" alt="Kaksoset">
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-4 col-md-3">
+                                <button class="horoscope" onclick="showHoroscope('Rapu')">
+                                    <div class="panel panel-default panel-horoscope">
+                                        <div class="panel-heading"><h2 class="panel-title">Rapu <span class="text-muted visible-xs-block visible-sm-inline visible-md-inline visible-lg-inline">21.6. - 22.7.</span></h2></div>
+                                        <div class="panel-body">
+                                            <img src="images/rapu-01.png" class="img-responsive" alt="Rapu">
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div class="clearfix visible-xs"></div>
+
+                            <div class="col-xs-6 col-sm-4 col-md-3">
+                                <button class="horoscope" onclick="showHoroscope('Leijona')">
+                                    <div class="panel panel-default panel-horoscope">
+                                        <div class="panel-heading"><h2 class="panel-title">Leijona <span class="text-muted visible-xs-block visible-sm-inline visible-md-inline visible-lg-inline">23.7. - 22.8.</span></h2></div>
+                                        <div class="panel-body">
+                                            <img src="images/leijona-01.png" class="img-responsive" alt="Leijona">
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-4 col-md-3">
+                                <button class="horoscope" onclick="showHoroscope('Neitsyt')">
+                                    <div class="panel panel-default panel-horoscope">
+                                        <div class="panel-heading"><h2 class="panel-title">Neitsyt <span class="text-muted visible-xs-block visible-sm-inline visible-md-inline visible-lg-inline">23.8. - 22.9.</span></h2></div>
+                                        <div class="panel-body">
+                                            <img src="images/neitsyt-01.png" class="img-responsive" alt="Neitsyt">
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div class="clearfix visible-xs"></div>
+
+                            <div class="col-xs-6 col-sm-4 col-md-3">
+                                <button class="horoscope" onclick="showHoroscope('Vaaka')">
+                                    <div class="panel panel-default panel-horoscope">
+                                        <div class="panel-heading"><h2 class="panel-title">Vaaka <span class="text-muted visible-xs-block visible-sm-inline visible-md-inline visible-lg-inline">23.9. - 23.10.</span></h2></div>
+                                        <div class="panel-body">
+                                            <img src="images/vaaka-01.png" class="img-responsive" alt="Vaaka">
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-4 col-md-3">
+                                <button class="horoscope" onclick="showHoroscope('Skorpioni')">
+                                    <div class="panel panel-default panel-horoscope">
+                                        <div class="panel-heading"><h2 class="panel-title">Skorpioni <span class="text-muted visible-xs-block visible-sm-inline visible-md-inline visible-lg-inline">24.10. - 22.11.</span></h2></div>
+                                        <div class="panel-body">
+                                            <img src="images/skorpioni-01.png" class="img-responsive" alt="Skorpioni">
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div class="clearfix visible-xs"></div>
+
+                            <div class="col-xs-6 col-sm-4 col-md-3">
+                                <button class="horoscope" onclick="showHoroscope('Jousimies')">
+                                    <div class="panel panel-default panel-horoscope">
+                                        <div class="panel-heading"><h2 class="panel-title">Jousimies <span class="text-muted visible-xs-block visible-sm-inline visible-md-inline visible-lg-inline">23.11. - 21.12.</span></h2></div>
+                                        <div class="panel-body">
+                                            <img src="images/jousimies-01.png" class="img-responsive" alt="Jousimies">
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-4 col-md-3">
+                                <button class="horoscope" onclick="showHoroscope('Kauris')">
+                                    <div class="panel panel-default panel-horoscope">
+                                        <div class="panel-heading"><h2 class="panel-title">Kauris <span class="text-muted visible-xs-block visible-sm-inline visible-md-inline visible-lg-inline">22.12. - 19.1.</span></h2></div>
+                                        <div class="panel-body">
+                                            <img src="images/kauris-01.png" class="img-responsive" alt="Kauris">
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div class="clearfix visible-xs"></div>
+
+                            <div class="col-xs-6 col-sm-4 col-md-3">
+                                <button class="horoscope" onclick="showHoroscope('Vesimies')">
+                                    <div class="panel panel-default panel-horoscope">
+                                        <div class="panel-heading"><h2 class="panel-title">Vesimies <span class="text-muted visible-xs-block visible-sm-inline visible-md-inline visible-lg-inline">20.1. - 19.2.</span></h2></div>
+                                        <div class="panel-body">
+                                            <img src="images/vesimies-01.png" class="img-responsive" alt="Vesimies">
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-4 col-md-3">
+                                <button class="horoscope" onclick="showHoroscope('Kalat')">
+                                    <div class="panel panel-default panel-horoscope">
+                                        <div class="panel-heading"><h2 class="panel-title">Kalat <span class="text-muted visible-xs-block visible-sm-inline visible-md-inline visible-lg-inline">20.2. - 20.3.</span></h2></div>
+                                        <div class="panel-body">
+                                            <img src="images/kalat-01.png" class="img-responsive" alt="Kalat">
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </aside>
+                </div>
+                <!-- End of collapse -->
+
+            </div>
+        </div>
+    </section>
+    <section class="container-fluid main-content">
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#viikko" aria-controls="viikkohoroskooppi" role="tab" data-toggle="tab">Viikko<span class="hidden-xs">horoskooppi</span></a></li>
+                    <li role="presentation"><a href="#kuukausi" aria-controls="kuukausihoroskooppi" role="tab" data-toggle="tab">Kuukausi<span class="hidden-xs">horoskooppi</span></a></li>
+                    <li role="presentation"><a href="#vuosi" aria-controls="vuosihoroskooppi" role="tab" data-toggle="tab">Vuosi<span class="hidden-xs">horoskooppi</span></a></li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="viikko">
+                        <h2 class="horoscope-heading" id="vk_info"><span class="text-muted">Viikkohoroskooppi</span><br>Viikko 50, 7.12.2015 – 13.12.2015</h2>
+                        <p class="htext" id="vk_horoscope"><img src="images/ikoni_viikkohoroskooppi-01.png" class="img-responsive pull-left img-horoscope-type" alt="Viikkohoroskooppi"></p>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="kuukausi">
+                        <h2 class="horoscope-heading" id="kk_info"><span class="text-muted">Kuukausihoroskooppi</span><br>Tammikuu</h2>
+                        <p class="htext" id="kk_horoscope"><img src="images/ikoni_kkhoroskooppi-01.png" class="img-responsive pull-left img-horoscope-type" alt="Kuukausihoroskooppi"></p>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="vuosi">
+                        <h2 class="horoscope-heading" id="v_info"><span class="text-muted">Vuosihoroskooppi</span><br>2015</h2>
+                        <p class="htext" id="v_horoscope"><img src="images/ikoni_vuosihoroskooppi-01.png" class="img-responsive pull-left img-horoscope-type" alt="Vuosihoroskooppi"></p>
+                    </div>
+                </div>
+                <hr>
+                <p class="text-center"><a href="#" class="btn btn-default" onclick="selectSign()"><i class="icon-star-empty"></i> Tallenna omaksi merkiksi</a></p>
+
+
+            </div>
+        </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
     <script>
-        var horoscopeArr = JSON.parse(window.localStorage.getItem('Horoscope'));
+        //window.localStorage.removeItem('UserSign')
+        var applaunchCount = window.localStorage.getItem('launchCount')
+        var mySign = JSON.parse(window.localStorage.getItem('UserSign'))
+        var curSign = ""
+        var weekArray = ""
+        var monthArray = ""
+        var yearArray = ""
+        var urlweek = "http://api.rajatieto.org/v1/horoscopes/week"
+        var urlmonth = "http://api.rajatieto.org/v1/horoscopes/month"
+        var urlyear = "http://api.rajatieto.org/v1/horoscopes/year"
+        var xmlhttpWeek = ""
+        var xmlhttpMonth = ""
+        var xmlhttpYear = ""
 
-        function open() {
-            console.log('WTF')
-            document.getElementById("signs").style.display = "block";
-            document.getElementById("horoscope").style.display = "block";
+        //check
+        console.log("1. applaunchCount = " + applaunchCount + " ja mySign = " + mySign)
+
+        //Check if launched before
+        if (!applaunchCount || !mySign || mySign.name == '') {     //NOT
+            //Local storage is not set, hence first time launch. set the local storage item
+            window.localStorage.setItem('launchCount', 1)
+            window.localStorage.setItem('UserSign', JSON.stringify({ set: 0, name: '' }))
+
+            //check
+            console.log("NEW. applaunchCount = " + applaunchCount + " ja mySign = " + mySign)
+
+            $('#collapseAllHoroscopes').collapse('show')
+
+        } else {
+            //getHoroscope(xmlhttpWeek, weekArray, urlweek)
+
+            xmlhttpWeek = new XMLHttpRequest()
+
+            if (!xmlhttpWeek) {
+                alert('Giving up :( Cannot create an XMLHTTP instance');
+                //getHoroscope();
+            }
+
+            ////check
+            //alert('1. ' + xmlhttpWeek.readyState);
+
+            xmlhttpWeek.onreadystatechange = function () {
+                if (xmlhttpWeek.readyState === 4) {
+                    if (xmlhttpWeek.status == 200) {
+
+                        ////check
+                        //alert('2. ' + xmlhttpWeek.readyState);
+
+                        weekArray = JSON.parse(xmlhttpWeek.responseText);
+
+                        ////check
+                        //console.log('weekarray ' + weekArray)
+
+                        // Start of month call //// Start of year call //
+                        xmlhttpMonth = new XMLHttpRequest()
+
+                        ////check
+                        //alert('1. ' + xmlhttpMonth.readyState);
+
+                        xmlhttpMonth.onreadystatechange = function () {
+                            if (xmlhttpMonth.readyState === 4) {
+                                if (xmlhttpMonth.status == 200) {
+
+                                    ////check
+                                    //alert('2. ' + xmlhttpMonth.readyState);
+
+                                    monthArray = JSON.parse(xmlhttpMonth.responseText);
+
+                                    ////check
+                                    //console.log('montharray ' + monthArray)
+
+                                    // Start of year call //
+                                    xmlhttpYear = new XMLHttpRequest()
+
+                                    ////check
+                                    //alert('1. ' + xmlhttpYear.readyState);
+
+                                    xmlhttpYear.onreadystatechange = function () {
+                                        if (xmlhttpYear.readyState === 4) {
+                                            if (xmlhttpYear.status == 200) {
+
+                                                ////check
+                                                //alert('2. ' + xmlhttpYear.readyState);
+
+                                                yearArray = JSON.parse(xmlhttpYear.responseText);
+
+                                                ////check
+                                                //console.log('yeararray ' + yearArray)
+
+                                                showHoroscope(mySign.name)
+                                            } else {
+                                                alert('There was a problem with the request.');
+                                            }
+                                        }
+                                    };
+                                    ////check
+                                    //alert('3. ' + xmlhttpYear.readyState);
+
+                                    xmlhttpYear.open("GET", urlyear, true);
+                                    xmlhttpYear.send();
+                                    // End of year call //
+
+                                } else {
+                                    alert('There was a problem with the request.');
+                                }
+                            }
+                        };
+                        ////check
+                        //alert('3. ' + xmlhttpWeek.readyState);
+
+                        xmlhttpMonth.open("GET", urlmonth, true);
+                        xmlhttpMonth.send();
+                        // End of month call //
+
+
+                    } else {
+                        alert('There was a problem with the request.');
+                    }
+                }
+            };
+            ////check
+            //alert('3. ' + xmlhttpWeek.readyState);
+
+            xmlhttpWeek.open("GET", urlweek, true);
+            xmlhttpWeek.send();
+
         }
 
-        var curSign = '';
+        function getHoroscope(xmlhttp, array, url) {
+            // check
+            console.log("gethoro: url = " + url)
+            xmlhttp = new XMLHttpRequest()
+            if (!xmlhttp) {
+                alert('Giving up :( Cannot create an XMLHTTP instance');
+                //getHoroscope(xmlhttp, array, url);
+            }
+
+            //check
+            alert('1. ' + xmlhttp.readyState);
+            xmlhttp.onreadystatechange =
+                //alertContents(xmlhttp, array)
+
+                function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        //check
+                        alert('2. ' + xmlhttp.readyState);
+                        array = JSON.parse(xmlhttp.responseText);
+
+                        //check
+                        console.log(' array ' + array)
+                    }
+                };
+            //check
+            alert('3. ' + xmlhttp.readyState);
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+
+            // showHoroscope(sign)
+        }
+
+        function alertContents(xmlhttp, array) {
+            if (xmlhttp.readyState === XMLHttpRequest.DONE) {
+                if (xmlhttp.status == 200) {
+                    //check
+                    alert('2. ' + xmlhttp.readyState);
+                    array = JSON.parse(xmlhttp.responseText);
+
+                    console.log(' 2.sign ' + sign + array)
+                } else {
+                    alert('There was a problem with the request.');
+                }
+            }
+        }
+        function showHoroscope(sign) {
+            curSign = sign
+            console.log('showhoro: sign ' + sign + weekArray)
+
+            var image = document.getElementById('image');
+            image.src = "images/" + sign.toLowerCase() + "-01.png";
+
+            var out = "";
+            for (i = 0; i < weekArray.length; i++) {
+                if (weekArray[i].sign == sign) {
+                    console.log('arrSign week ' + weekArray[i].fiSign)
+                    document.getElementById("signName").innerHTML = weekArray[i].fiSign
+                    document.getElementById("small").innerHTML = " " + weekArray[i].horoscopeDays
+                    document.getElementById("vk_horoscope").innerHTML = weekArray[i].fortune
+                    out += "Viikko " + weekArray[i].week + " " + weekArray[i].weekString
+                    console.log(out)
+                    document.getElementById("vk_info").innerHTML = out
+
+                }
+            }
+            for (i = 0; i < monthArray.length; i++) {
+                if (monthArray[i].sign == sign) {
+                    console.log('arrSign month' + monthArray[i].fiSign)
+                    document.getElementById("kk_horoscope").innerHTML = monthArray[i].fortune
+                    document.getElementById("kk_info").innerHTML = monthArray[i].period
+                }
+            }
+            for (i = 0; i < yearArray.length; i++) {
+                if (yearArray[i].sign == sign) {
+                    console.log('arrSign year' + yearArray[i].fiSign)
+                    document.getElementById("v_horoscope").innerHTML = yearArray[i].fortune
+                    document.getElementById("v_info").innerHTML = yearArray[i].period
+                }
+            }
+
+            $('#collapseAllHoroscopes').collapse('hide')
+        }
 
         // set global UserSign
         function selectSign() {
             var uSign = JSON.parse(window.localStorage.getItem('UserSign'))
 
-            curSign = document.getElementById("sign");
-            curSign = curSign.options[curSign.selectedIndex].text
-            console.log('sign ' + document.getElementById("sign").value)
+            // CHECK
+            console.log('curSign ' + curSign)
+
             if (uSign.set == 0) {
                 uSign.set = 1
-                uSign.name = curSign
-                console.log(JSON.stringify(uSign))
-                window.localStorage.setItem('UserSign', JSON.stringify(uSign));
-                console.log('UserSign' + window.localStorage.getItem('UserSign'))
             }
+            uSign.name = curSign
+
+            // CHECK
+            console.log(JSON.stringify(uSign))
+
+            window.localStorage.setItem('UserSign', JSON.stringify(uSign));
+
+            // CHECK
+            console.log('UserSign' + window.localStorage.getItem('UserSign'))
             console.log('uSign ' + uSign);
         }
-        function showHoroscope(arr, sign) {
-            var out = "";
-            for (i = 0; i < arr.length; i++) {
-                if (arr[i].fiSign == sign) {
-                    console.log(arr[i].fiSign + '=' + arr[i].fiSign)
-                    out += "<h2>" + arr[i].fiSign + "</h2> <h4>" + arr[i].horoscopeDays + "</h4> <p>" + arr[i].fortune + '</p>' + '</a><br>';
-                    console.log('out =' + arr[i].fiSign)
-                }
-            }
-            document.getElementById("horoscope").innerHTML = out;
-            document.getElementById("signs").style.display = "none";
-           // document.getElementById("horoscope").style.display = "block";
-        }
+
     </script>
 </body>
-
 </html>
+

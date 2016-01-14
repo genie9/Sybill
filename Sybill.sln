@@ -28,9 +28,9 @@ Global
 		{7DC651E6-D344-4281-927B-F536FB633023}.Debug|Android.ActiveCfg = Debug|Android
 		{7DC651E6-D344-4281-927B-F536FB633023}.Debug|Android.Build.0 = Debug|Android
 		{7DC651E6-D344-4281-927B-F536FB633023}.Debug|Android.Deploy.0 = Debug|Android
-		{7DC651E6-D344-4281-927B-F536FB633023}.Debug|iOS.ActiveCfg = Debug|iOS
-		{7DC651E6-D344-4281-927B-F536FB633023}.Debug|iOS.Build.0 = Debug|iOS
-		{7DC651E6-D344-4281-927B-F536FB633023}.Debug|iOS.Deploy.0 = Debug|iOS
+		{7DC651E6-D344-4281-927B-F536FB633023}.Debug|iOS.ActiveCfg = Debug|Android
+		{7DC651E6-D344-4281-927B-F536FB633023}.Debug|iOS.Build.0 = Debug|Android
+		{7DC651E6-D344-4281-927B-F536FB633023}.Debug|iOS.Deploy.0 = Debug|Android
 		{7DC651E6-D344-4281-927B-F536FB633023}.Debug|Windows Phone (Universal).ActiveCfg = Debug|Windows Phone (Universal)
 		{7DC651E6-D344-4281-927B-F536FB633023}.Debug|Windows Phone (Universal).Build.0 = Debug|Windows Phone (Universal)
 		{7DC651E6-D344-4281-927B-F536FB633023}.Debug|Windows Phone (Universal).Deploy.0 = Debug|Windows Phone (Universal)
