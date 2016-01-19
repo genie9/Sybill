@@ -1,11 +1,11 @@
 {
-     "android": {
-         "release": {
-             "keystore": "c:\\my-release-key.keystore",
-             "storePassword": "pekka23",
-             "alias": "evly",
-             "password" : "pekka23",
-             "keystoreType": ""
-         }
-     }
- }
+ "android": {
+     "release": {
+         "keystore":"c:\\my-release-key.keystore",
+     "storePassword":"pekka23",
+     "alias":"evly",
+   "password":"pekka23",
+           "keystoreType":""
+       }
+   }
+}
