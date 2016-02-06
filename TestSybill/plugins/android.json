@@ -1,0 +1,39 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.coolappz.TestSybill"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "com.coolappz.TestSybill"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.coolappz.TestSybill"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.coolappz.TestSybill"
+        },
+        "cordova-plugin-battery-status": {
+            "PACKAGE_NAME": "com.coolappz.TestSybill"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "com.coolappz.TestSybill"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.coolappz.TestSybill"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.coolappz.TestSybill"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.coolappz.TestSybill"
+        }
+    },
+    "dependent_plugins": {}
+}

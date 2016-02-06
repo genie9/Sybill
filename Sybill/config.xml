@@ -5,6 +5,8 @@
   <author href="http://cordova.io" email="dev@cordova.apache.org">Traverse Games</author>
   <content src="index.html" />
   <access origin="http://api.rajatieto.org/v1/horoscopes/week" />
+  <access origin="http://api.rajatieto.org/v1/horoscopes/month" />
+  <access origin="http://api.rajatieto.org/v1/horoscopes/year" />
   <vs:features />
   <preference name="SplashScreen" value="screen" />
   <preference name="windows-target-version" value="8.1" />

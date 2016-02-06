@@ -1,0 +1,199 @@
+body {
+    background-color: #E9E2A9;
+    padding-bottom: 4em;
+}
+
+h1 {
+    font-family: 'Philosopher', sans-serif;
+    font-weight: 700;
+}
+
+.page-header h1 {
+    margin-top: 14px;
+}
+
+h2 {
+    line-height: 1.35em;
+    font-size: 1.8em;
+    margin-top: 1.3em;
+    margin-bottom: 1em;
+}
+
+h2, h3 {
+    font-family: 'Philosopher', sans-serif;
+    font-weight: 400;
+    color: #337AB7;
+    text-align: center;
+}
+
+h2.horoscope-heading span {
+    font-size: 0.8em;
+}
+
+.btn {
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 500;
+}
+
+.btn-all-horoscopes {
+    background-color: rgba(255,255,255,0.4);
+}
+
+.btn-all-horoscopes:hover, .btn-all-horoscopes:focus  {
+    background-color: rgba(255,255,255,0.6);
+}
+
+.img-logo {
+    margin-top: 15px;
+    width: 34px;
+    height: 34px;
+}
+
+.img-horoscope-head {
+    width: 36px;
+    height: 36px;
+    margin-right: 0.3em;
+}
+
+.img-horoscope-type {
+    width: 100px;
+    height: 100px;
+    margin: 0.3em 0.6em 0.1em 0;
+}
+
+.nav {
+    font-family: serif;
+    font-size: 1.2em;
+}
+
+.nav-tabs > li > a {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    background-color: #23527c;
+    color: white;
+}
+
+p.htext {
+    font-family: serif;
+    font-size: 1.4em;
+    padding-left: 3em;
+    padding-right: 3em;
+}
+
+h2.sub-heading {
+    margin: 0px 0 26px;
+}
+
+h2.panel-title {
+    color: white;
+    line-height: 1.2em;    
+}
+
+h2.panel-title span.text-muted {
+    color: #e9e2a9;
+}
+
+.panel-horoscope, .panel-heading {
+    transition: all 0.8s, transform 0.3s;
+}
+
+.tab-pane {
+    transition: height 4s;
+}
+
+a.horoscope:hover {
+    text-decoration: none;
+}
+
+.panel-horoscope:hover .panel-heading {
+    border-bottom-color: #F4A306;
+}
+
+.panel-horoscope .panel-heading {
+    background-color: #2c2825;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.main-content {
+    background-color: white;
+    padding-top: 1em;
+    padding-bottom: 4em;
+    margin-bottom: 3em;
+}
+
+.page-header {
+    background-color: #2c2825;
+    margin: 0 -10px 10px -10px;
+    padding: 0.1em 15px 0.2em 15px;
+    border-bottom: 2px #F4A306 solid;
+}
+
+@media (min-width: 768px) {
+.page-header {    
+    margin: 0 -15px 10px -15px;
+    }
+}
+
+.page-header h1 {
+    color: white;
+}
+
+.page-header h1 small {
+    color: #E9E2A9;
+}
+
+.panel-horoscope {
+    text-align: center;
+}
+
+.panel-horoscope {
+    background-color: #275B7F;
+    border-radius: 8px;
+    border-width: 0px;
+    margin-bottom: 25px;
+    -webkit-box-shadow: 0px 1px 9px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 1px 9px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 1px 9px 0px rgba(0,0,0,0.5);
+}
+
+.panel-horoscope:hover {
+    -webkit-box-shadow: 0px 1px 9px 2px rgba(0,0,0,0.8);
+    -moz-box-shadow: 0px 1px 9px 2px rgba(0,0,0,0.8);
+    box-shadow: 0px 1px 9px 2px rgba(0,0,0,0.8);
+}
+
+.panel-body img {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (max-width: 767px) {
+    .container {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+    .col-xs-6, .col-xs-12 {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+.panel-horoscope {
+    margin-bottom: 20px;    
+    }
+    p.htext {
+        padding-left: 2em; 
+        padding-right: 2em;
+    }
+}
+
+@media (min-width: 992px) {
+    p.htext {
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
